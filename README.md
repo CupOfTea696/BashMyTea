@@ -63,8 +63,6 @@ These will only be bashmarked if you chose to install bashmarks.
  - `fucking`
  - `pls`
 
-#### Editing Hosts File
-
 #### Quick Navigation & Editing
 
  - `..`: Go up one directory
