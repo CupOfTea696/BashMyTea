@@ -63,6 +63,12 @@ These will only be bashmarked if you chose to install bashmarks.
  - `fucking`
  - `pls`
 
+#### Directory Listing
+
+ - `ls`: `ls -p`
+ - `ll`: `ls -lp`
+ - `la`: `ls -lAp`
+
 #### Quick Navigation & Editing
 
  - `..`: Go up one directory
