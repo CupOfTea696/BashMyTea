@@ -203,7 +203,7 @@ cat "$DIR/bash_profile/ps.sh" >> ~/.bash_profile
 
 git config --global color.ui "auto"
 git config --global core.editor nano
-git config --global alias.forget '!git rm -r --cached . && git add . && git commit -am "Remove ignored files"'
+git config --global alias.forget '!git rm -r --cached . && git add . && git commit -am "rm ignored files"'
 
 mkdir ~/Development
 mkdir ~/Downloads/_attachments
