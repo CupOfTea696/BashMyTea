@@ -212,7 +212,7 @@ if [[ "$BASHMARKS_INSTALLED" = true ]]; then
     s documents
     
     cd ~/Development
-    s projects
+    s development
     
     cd ~/Downloads
     s downloads

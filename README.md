@@ -4,7 +4,7 @@ An install script for my most used command line tools & `.bash_profile`.
 
 ## Installing
 
-Clone this repo, enter the director and run `sh install.sh`. You may run this script in non-interactive mode by passing the flag `-n` or `--no-interaction`.
+Clone this repo, enter the directory and run `sh install.sh`. You may run this script in non-interactive mode by passing the flag `-n` or `--no-interaction`.
 Please note that some of the tools installed might still ask interactive questions.
 
 ## Overview
@@ -46,7 +46,7 @@ Please note that some of the tools installed might still ask interactive questio
 
 These will only be bashmarked if you chose to install bashmarks.
 
- - `~/Development`: projects
+ - `~/Development`: development
  - `~/Documents`: documents
  - `~/Downloads`: downloads
 
