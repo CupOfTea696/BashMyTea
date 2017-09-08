@@ -1,7 +1,7 @@
 # SUDO aliases
 alias fucking='sudo'
 alias pls='sudo'
-alias fak='echo'
+alias fak='sudo'
 
 # Hosts file
 alias hosts="sudo nano /etc/hosts"

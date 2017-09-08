@@ -1,22 +1,25 @@
 # Homestead
 alias homestead='function __homestead() { (cd ~/Homestead && vagrant $*); unset -f __homestead; }; __homestead'
 alias h="homestead up"
-alias h:up="homestead up --provision"
-alias h:h="homestead halt"
-alias h:s="homestead ssh"
-alias h:p="homestead provision"
-alias h:e="edit ~/Homestead/Homestead.yaml"
-alias h:u="rm ~/.vagrant.d/tmp/*; homestead box update"
+alias hup="homestead up --provision"
+alias hh="homestead halt"
+alias hs="homestead ssh"
+alias hp="homestead provision"
+alias he="edit ~/Homestead/Homestead.yaml"
+alias hu="homestead box update"
 
 # Laravel
 alias a="php artisan"
-alias a:m="php artisan migrate"
-alias a:r="php artisan refresh"
-alias a:r="php artisan refresh --seed"
-alias a:cc="php artisan chache clear"
 alias art="php artisan"
-alias art:m="php artisan migrate"
-alias art:r="php artisan refresh"
-alias art:r="php artisan refresh --seed"
-alias art:cc="php artisan chache clear"
+alias artisan="php artisan"
+
+alias am="php artisan migrate"
+alias arf="php artisan refresh"
+alias arfs="php artisan refresh --seed"
+alias acc="php artisan chache clear"
+
+alias artm="php artisan migrate"
+alias artrf="php artisan refresh"
+alias artrfs="php artisan refresh --seed"
+alias artcc="php artisan chache clear"
 
