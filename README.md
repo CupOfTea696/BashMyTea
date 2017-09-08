@@ -54,14 +54,17 @@ These will only be bashmarked if you chose to install bashmarks.
 
  - `color.ui`: `auto`
  - `core.editor`: `nano`
- - `alias.forget`: `'!git rm -r --cached . && git add . && git commit -am "Remove ignored files"'`
+ - `alias.forget`: `'!git rm -r --cached . && git add . && git commit -am "rm ignored files"'`
 
 ### Aliases
+
+Any aliases for tools you chose not to install will not be added to your `.bash_profile`.
 
 #### Sudo
 
  - `fucking`
  - `pls`
+ - `fak`
 
 #### Directory Listing
 
@@ -77,24 +80,71 @@ These will only be bashmarked if you chose to install bashmarks.
  - `b`: Return to the previous directory
  - `abs`: Convert relative path to absolute path
  - `lna`: Link, converting relative directories to absolute ones
- - `edit`: Edit a file using Brackets
- - `finder`: Open a path in Finder
+ - `edit`: Edit a file using Brackets (You can change this to your own editor later)
+ - `ce`: Browse to a directory and open it in your editor
+ - `mke`: Create and browse into a directory, and open it in your editor
  - `hosts`: Edit the hosts file using `nano`
+
+#### Editing your .bash_profile
  - `profile`: Edit your `.bash_profile`
  - `r`: Reload your `.bash_profile`
+
+#### Finder
+ - `finder`: Open a path in Finder
  - `killfinder`: Restart Finder
  - `showhidden`: Show hidden files in Finder
  - `hidehidden`: Hide hidden files in Finder
 
+#### Network
+ - `ip`: Get your IP
+ - `localip`: Get your local IP
+
+#### Git
+ - `gitclean`: Remove files ignored by git
+ - `gitforget`: Remove files ignored by git
+ - `gitsync`: Sync origin/master branch with upstream/master branch
+ - `gitlog`: Show a pretty git log
+ - `g`: `git`
+ - `ga`: `git add`
+ - `gc`: `git commit`
+ - `gp`: `git push`
+ - `gs`: `git status`
+ - `gaa`: `git add .`
+ - `gclean`: `git rm -r --cached . && git add .  && git commit -m 'rm ignored files'`
+ - `gforget`: `git rm -r --cached . && git add .  && git commit -m 'rm ignored files'`
+ - `gsync`: `git fetch upstream && git checkout master && git merge upstream/master --no-edit && git push`
+ - `glog`: `git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit`
+
+#### Composer
+ - `c`: `composer`
+ - `cr`: `composer require`
+ - `cu`: `composer update`
+ - `ci`: `composer install`
+ - `cgu`: `composer global update`
+ - `cda`: `composer dump-autoload -o`
+
 #### Homestead
  - `homestead`: Forwards Vagrant commands to the Homestead box
  - `h`: `homestead up`
- - `h:up`: `homestead up --provision`
- - `h:h`: `homestead halt`
- - `h:s`: `homestead ssh`
- - `h:p`: `homestead provision`
- - `h:e`: `edit ~/Homestead/Homestead.yaml`
- - `h:u`: `rm ~/.vagrant.d/tmp/*; homestead box update`
+ - `hup`: `homestead up --provision`
+ - `hh`: `homestead halt`
+ - `hs`: `homestead ssh`
+ - `hp`: `homestead provision`
+ - `he`: `edit ~/Homestead/Homestead.yaml`
+ - `hu`: `homestead box update`
+
+#### Laravel
+- `a`: `php artisan`
+- `art`: `php artisan`
+- `artisan`: `php artisan`
+- `am`: `php artisan migrate`
+- `arf`: `php artisan refresh`
+- `arfs`: `php artisan refresh --seed`
+- `acc`: `php artisan chache clear`
+- `artm`: `php artisan migrate`
+- `artrf`: `php artisan refresh`
+- `artrfs`: `php artisan refresh --seed`
+- `artcc`: `php artisan chache clear`
 
 ## Screenshot
 
