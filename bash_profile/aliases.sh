@@ -47,7 +47,28 @@ function lna {
 # Thefuck aliases
 eval $(thefuck --alias)
 
-# Quick oepn/edit
+# Quick open/edit
 alias edit="open -a brackets"
+function ce ()
+{
+    cd "$1" && edit ./
+}
+function mke ()
+{
+    mkdir "$1" && cd "$1" && edit ./
+}
+
+# Network
+alias ip="curl icanhazip.com"
+alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
+
+# Quickly edit this file
+alias profile="open -a brackets ~/.bash_profile"
+alias r="source ~/.bash_profile"
+
+# Finder
 alias finder="open -a finder"
+alias killfinder="killall Finder"
+alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
+alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
 

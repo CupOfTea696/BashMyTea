@@ -1,16 +1,3 @@
-# Quickly edit this file
-alias profile="open -a brackets ~/.bash_profile"
-alias r="source ~/.bash_profile"
-
-#Restart Finder
-alias killfinder="killall Finder"
-
-# Show/hide hidden files in Finder
-alias showhidden="defaults write com.apple.finder AppleShowAllFiles TRUE && killall Finder"
-alias hidehidden="defaults write com.apple.finder AppleShowAllFiles FALSE && killall Finder"
-
-alias now='echo $(date +"%d.%m.%Y, %l:%M%p")'
-
 ## GIT & DEVELOPMENT HAPPINESS ##
 
 # --------------------
@@ -79,7 +66,10 @@ style_date="\[${RESET}${YELLOW}\]"
 style_chars="\[${RESET}${WHITE}\]"
 style_branch="${RED}"
 
-function c {
+# Date
+alias now='echo $(date +"%d.%m.%Y, %l:%M%p")'
+
+function splash_screen {
     clear
     echo
     echo "Welcome at $(hostname -s), $(whoami),"
@@ -94,7 +84,7 @@ function c {
     echo "${RESET}"
     hr -
 }
-c
+splash_screen
 
 # Auto-complete git commands and branch names
 GIT_PS1_SHOWDIRTYSTATE=true

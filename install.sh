@@ -192,6 +192,10 @@ if [[ "$BASHMARKS_INSTALLED" = true ]]; then
     cat "$DIR/bash_profile/bashmarks.sh" >> ~/.bash_profile
 fi
 cat "$DIR/bash_profile/aliases.sh" >> ~/.bash_profile
+cat "$DIR/bash_profile/git.sh" >> ~/.bash_profile
+if [[ "$COMPOSER_INSTALLED" = true ]]; then
+    cat "$DIR/bash_profile/composer_aliases.sh" >> ~/.bash_profile
+fi
 if [[ "$HOMESTEAD_INSTALLED" = true ]]; then
     cat "$DIR/bash_profile/homestead.sh" >> ~/.bash_profile
 fi
