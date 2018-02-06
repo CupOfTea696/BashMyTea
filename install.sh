@@ -38,7 +38,10 @@ sudo easy_install pip
 
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-brew install bash-completion git node mysql wget
+brew install bash-completion git node mysql wget rbenv
+
+rbenv init
+curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor | bash
 
 PHP_INSTALLED=false
 if ! [[ "$NON_INTERACTIVE" = true ]]; then
@@ -83,12 +86,14 @@ sudo npm cache clean -f
 node -v
 npm -v
 
+YARN_INSTALLED=false
 if ! [[ "$NON_INTERACTIVE" = true ]]; then
-    read -p "Do you want to install Bower? [y/n]" -n 1 -r
+    read -p "Do you want to install Yarn? [y/n]" -n 1 -r
     echo
 fi
 if [[ $REPLY =~ ^[Yy]$ || "$NON_INTERACTIVE" = true ]]; then
-    sudo npm install -g bower
+    YARN_INSTALLED=true
+    brew install yarn
 fi
 
 if ! [[ "$NON_INTERACTIVE" = true ]]; then
@@ -171,11 +176,11 @@ if ! [[ "$NON_INTERACTIVE" = true ]]; then
     rm ~/.bash_profile
 fi
 if [ -f ~/.bash_profile ]; then
-    read -p "Do you want to replace your current .bash_profile (recommended)? If you choose no the Bash My Tea profile will be appended. [y/n]" -n 1 -r
+    read -p "Do you want to replace your current .bash_profile (recommended)? A backup will be made if yu choose yes. If you choose no the Bash My Tea profile will be appended. [y/n]" -n 1 -r
     echo
     if [[ $REPLY =~ ^[Yy]$ ]]
     then
-        rm ~/.bash_profile
+        mv ~/.bash_profile_backup
     fi
 fi
 
@@ -193,6 +198,9 @@ if [[ "$BASHMARKS_INSTALLED" = true ]]; then
 fi
 cat "$DIR/bash_profile/aliases.sh" >> ~/.bash_profile
 cat "$DIR/bash_profile/git.sh" >> ~/.bash_profile
+if [[ "$YARN_INSTALLED" = true ]]; then
+    cat "$DIR/bash_profile/yarn.sh" >> ~/.bash_profile
+fi
 if [[ "$COMPOSER_INSTALLED" = true ]]; then
     cat "$DIR/bash_profile/composer_aliases.sh" >> ~/.bash_profile
 fi

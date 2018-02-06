@@ -5,6 +5,7 @@ alias fak='sudo'
 
 # Hosts file
 alias hosts="sudo nano /etc/hosts"
+alias ehosts="pls /Applications/Brackets.app/Contents/MacOS/Brackets /etc/hosts"
 
 # Quick navigation
 alias ..="cd .."
@@ -49,13 +50,52 @@ eval $(thefuck --alias)
 
 # Quick open/edit
 alias edit="open -a brackets"
+alias finder="open -a finder"
+function cd ()
+{
+    out="${RESET}${WHITE}↳  ${RESET}${CYAN}[DIRS]${RESET}${GREEN}"
+    prev_rb="$(rbenv version-name)"
+    path=${1:-~}
+    
+    command cd "$path" >/dev/null
+    
+    if [[ $? -eq 0 ]]; then
+        current_rb="$(rbenv version-name)"
+        
+        if [[ "$current_rb" != "$prev_rb" ]]; then
+            out+=" (using ruby ${RESET}${ORANGE}v$current_rb${RESET}${GREEN})"
+        fi
+        
+        echo "${out/\[DIRS\]/$(dirs)}"
+    fi
+}
 function ce ()
 {
     cd "$1" && edit ./
 }
+function mk ()
+{
+    mkdir "$1" && cd "$1"
+}
 function mke ()
 {
     mkdir "$1" && cd "$1" && edit ./
+}
+function cf ()
+{
+    cd "$1" && finder ./
+}
+function mkf ()
+{
+    mkdir "$1" && cd "$1" && finder ./
+}
+function cef ()
+{
+    cd "$1" && edit ./ && finder ./
+}
+function mkef ()
+{
+    mkdir "$1" && cd "$1" && edit ./ && finder ./
 }
 
 # Network
@@ -63,8 +103,9 @@ alias ip="curl icanhazip.com"
 alias localip="ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1'"
 
 # Quickly edit this file
-alias profile="open -a brackets ~/.bash_profile"
+alias profile="edit ~/.bash_profile"
 alias r="source ~/.bash_profile"
+alias qr="export SHOW_SPLASH=0; source ~/.bash_profile; export SHOW_SPLASH=1"
 
 # Finder
 alias finder="open -a finder"

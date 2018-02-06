@@ -17,6 +17,7 @@ Please note that some of the tools installed might still ask interactive questio
    - git
    - mysql
    - node
+   - [rbenv](https://github.com/rbenv/rbenv)
    - wget
  - [PHP 7.1](http://www.php.net) (optional)
  - [Composer](https://getcomposer.org) (optional)
@@ -24,9 +25,9 @@ Please note that some of the tools installed might still ask interactive questio
    - [phpspec/phpspec](http://www.phpspec.net)
    - [laravel/installer](https://laravel.com)
  - [Node.js](https://nodejs.org)
-   - [Bower](https://bower.io) (optional)
    - [Gulp](http://gulpjs.com) (optional)
    - [Grunt](https://gruntjs.com) (optional)
+   - [Yarn](https://yarnpkg.com) (optional)
  - [Bashmarks](https://www.huyng.com/projects/bashmarks)
  - [thefuck](https://github.com/nvbn/thefuck)
  - [Fortune](https://www.wikiwand.com/en/Fortune_(Unix)) & [Cowsay](https://github.com/cupOfTea696/cowsay) (optional)
@@ -72,6 +73,12 @@ Any aliases for tools you chose not to install will not be added to your `.bash_
  - `ll`: `ls -lp`
  - `la`: `ls -lAp`
 
+#### Finder
+ - `finder`: Open a path in Finder
+ - `killfinder`: Restart Finder
+ - `showhidden`: Show hidden files in Finder
+ - `hidehidden`: Hide hidden files in Finder
+
 #### Quick Navigation & Editing
 
  - `..`: Go up one directory
@@ -82,18 +89,18 @@ Any aliases for tools you chose not to install will not be added to your `.bash_
  - `lna`: Link, converting relative directories to absolute ones
  - `edit`: Edit a file using Brackets (You can change this to your own editor later)
  - `ce`: Browse to a directory and open it in your editor
- - `mke`: Create and browse into a directory, and open it in your editor
+ - `mk`: Create and enter a directory
+ - `mke`: Create and enter a directory, and open it in your editor
+ - `cf`: Enter a directory and open it in finder
+ - `mkf`: Create and enter a directory, and open it in Finder
+ - `cef`: Enter a directory and open it in your editor and finder
+ - `mkef`: Create and enter a directory, and open it in your editor and finder
  - `hosts`: Edit the hosts file using `nano`
 
 #### Editing your .bash_profile
  - `profile`: Edit your `.bash_profile`
  - `r`: Reload your `.bash_profile`
-
-#### Finder
- - `finder`: Open a path in Finder
- - `killfinder`: Restart Finder
- - `showhidden`: Show hidden files in Finder
- - `hidehidden`: Hide hidden files in Finder
+ - `qr`: Reload your `.bash_profile` without re-rendering the splash screen
 
 #### Network
  - `ip`: Get your IP
@@ -104,7 +111,6 @@ Any aliases for tools you chose not to install will not be added to your `.bash_
  - `gitforget`: Remove files ignored by git
  - `gitsync`: Sync origin/master branch with upstream/master branch
  - `gitlog`: Show a pretty git log
- - `g`: `git`
  - `ga`: `git add`
  - `gc`: `git commit`
  - `gp`: `git push`
@@ -130,8 +136,11 @@ Any aliases for tools you chose not to install will not be added to your `.bash_
  - `hh`: `homestead halt`
  - `hs`: `homestead ssh`
  - `hp`: `homestead provision`
+ - `hcmd`: Execute a command on your Homestead machine
  - `he`: `edit ~/Homestead/Homestead.yaml`
- - `hu`: `homestead box update`
+ - `hb`: Backup your Homestead databases
+ - `hrb`: Restore your Homestead databases from the latest backup
+ - `hu`: `hb && homestead box update && homestead destroy -f && hup && hrb`
 
 #### Laravel
 - `a`: `php artisan`

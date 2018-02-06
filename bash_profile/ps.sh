@@ -66,10 +66,19 @@ style_date="\[${RESET}${YELLOW}\]"
 style_chars="\[${RESET}${WHITE}\]"
 style_branch="${RED}"
 
+style_success="\[${RESET}${GREEN}\]"
+style_error="\[${RESET}${RED}\]"
+
 # Date
 alias now='echo $(date +"%d.%m.%Y, %l:%M%p")'
 
-function splash_screen {
+export SHOW_SPLASH=${SHOW_SPLASH:-1}
+
+function sp {
+    if [[ $SHOW_SPLASH -eq 0 ]]; then
+        return
+    fi
+    
     clear
     echo
     echo "Welcome at $(hostname -s), $(whoami),"
@@ -84,29 +93,30 @@ function splash_screen {
     echo "${RESET}"
     hr -
 }
-splash_screen
+sp
 
 # Auto-complete git commands and branch names
 GIT_PS1_SHOWDIRTYSTATE=true
 
 # Define how the prompt is styled. Colorizes the directory path & git branch, puts your commands on a new line
-PS1="\n"                                  # Newline
-PS1+="${style_user}$(whoami)"             # User
-PS1+="${style_chars}@"                    # @
-PS1+="${style_host}\h"                    # Host
-PS1+="${style_chars}: "                   # :
-PS1+="${style_path}\w"                    # Working directory
-PS1+="\$(prompt_git)"                     # Git details
-PS1+="\n"                                 # Newline
-PS1+="${style_chars}"                     #
-PS1+=$'\xe2\x80\xba'                      # >
-PS1+="\[${RESET}\]"                       # Reset color
+PS1="\n"                                                                            # Newline
+PS1+="\$([ \$? == 0 ] && echo \"${RESET}${GREEN}✓\" || echo \"${RESET}${RED}✗\" ) " # ✓ || ✗
+PS1+="${style_user}$(whoami)"                                                       # User
+PS1+="${style_chars}@"                                                              # @
+PS1+="${style_host}\h"                                                              # Host
+PS1+="${style_chars}: "                                                             # :
+PS1+="${style_path}\w"                                                              # Working directory
+PS1+="\$(prompt_git)"                                                               # Git details
+PS1+="\n"                                                                           # Newline
+PS1+="${style_chars}"                                                               #
+PS1+="ϟ "                                                                           # ϟ
+PS1+="\[${RESET}\]"                                                                 # Reset color
 
 PS2="${style_chars} "
-PS2+=$'\xe2\x80\xba'
+PS2+="ϟ "
 PS2+="\[${RESET}\]"
 
-PS4=" "
+PS4="  "
 
 # Auto-delete merged git branches
 alias git_delete_merged="git branch --merged | grep -v '\*' | xargs -n 1 git branch -d"
@@ -159,3 +169,61 @@ prompt_git() {
   fi
   printf "${WHITE} on ${style_branch}${git_info}"
 }
+
+###-begin-npm-completion-###
+#
+# npm command completion script
+#
+# Installation: npm completion >> ~/.bashrc  (or ~/.zshrc)
+# Or, maybe: npm completion > /usr/local/etc/bash_completion.d/npm
+#
+
+if type complete &>/dev/null; then
+  _npm_completion () {
+    local words cword
+    if type _get_comp_words_by_ref &>/dev/null; then
+      _get_comp_words_by_ref -n = -n @ -w words -i cword
+    else
+      cword="$COMP_CWORD"
+      words=("${COMP_WORDS[@]}")
+    fi
+
+    local si="$IFS"
+    IFS=$'\n' COMPREPLY=($(COMP_CWORD="$cword" \
+                           COMP_LINE="$COMP_LINE" \
+                           COMP_POINT="$COMP_POINT" \
+                           npm completion -- "${words[@]}" \
+                           2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  complete -o default -F _npm_completion npm
+elif type compdef &>/dev/null; then
+  _npm_completion() {
+    local si=$IFS
+    compadd -- $(COMP_CWORD=$((CURRENT-1)) \
+                 COMP_LINE=$BUFFER \
+                 COMP_POINT=0 \
+                 npm completion -- "${words[@]}" \
+                 2>/dev/null)
+    IFS=$si
+  }
+  compdef _npm_completion npm
+elif type compctl &>/dev/null; then
+  _npm_completion () {
+    local cword line point words si
+    read -Ac words
+    read -cn cword
+    let cword-=1
+    read -l line
+    read -ln point
+    si="$IFS"
+    IFS=$'\n' reply=($(COMP_CWORD="$cword" \
+                       COMP_LINE="$line" \
+                       COMP_POINT="$point" \
+                       npm completion -- "${words[@]}" \
+                       2>/dev/null)) || return $?
+    IFS="$si"
+  }
+  compctl -K _npm_completion npm
+fi
+###-end-npm-completion-###
