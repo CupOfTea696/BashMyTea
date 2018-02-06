@@ -131,15 +131,15 @@ Any aliases for tools you chose not to install will not be added to your `.bash_
 
 #### Homestead
  - `homestead`: Forwards Vagrant commands to the Homestead box
+ - `hcmd`: Execute a command on your Homestead machine
+ - `hb`: Backup your Homestead databases
+ - `hrb`: Restore your Homestead databases from the latest backup
  - `h`: `homestead up`
  - `hup`: `homestead up --provision`
  - `hh`: `homestead halt`
  - `hs`: `homestead ssh`
  - `hp`: `homestead provision`
- - `hcmd`: Execute a command on your Homestead machine
  - `he`: `edit ~/Homestead/Homestead.yaml`
- - `hb`: Backup your Homestead databases
- - `hrb`: Restore your Homestead databases from the latest backup
  - `hu`: `hb && homestead box update && homestead destroy -f && hup && hrb`
 
 #### Laravel
