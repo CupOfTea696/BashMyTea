@@ -1,3 +1,6 @@
+# System
+alias allapps='sudo spctl --master-disable'
+
 # SUDO aliases
 alias fucking='sudo'
 alias pls='sudo'
@@ -5,7 +8,7 @@ alias fak='sudo'
 
 # Hosts file
 alias hosts="sudo nano /etc/hosts"
-alias ehosts="pls /Applications/Brackets.app/Contents/MacOS/Brackets /etc/hosts"
+alias ehosts="sudo /Applications/Brackets.app/Contents/MacOS/Brackets /etc/hosts"
 
 # Quick navigation
 alias ..="cd .."
@@ -50,22 +53,21 @@ eval $(thefuck --alias)
 
 # Quick open/edit
 alias edit="open -a brackets"
-alias finder="open -a finder"
 function cd ()
 {
     out="${RESET}${WHITE}↳  ${RESET}${CYAN}[DIRS]${RESET}${GREEN}"
     prev_rb="$(rbenv version-name)"
     path=${1:-~}
-    
+
     command cd "$path" >/dev/null
-    
+
     if [[ $? -eq 0 ]]; then
         current_rb="$(rbenv version-name)"
-        
+
         if [[ "$current_rb" != "$prev_rb" ]]; then
             out+=" (using ruby ${RESET}${ORANGE}v$current_rb${RESET}${GREEN})"
         fi
-        
+
         echo "${out/\[DIRS\]/$(dirs)}"
     fi
 }

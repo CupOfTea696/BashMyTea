@@ -45,13 +45,14 @@ curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-doctor 
 
 PHP_INSTALLED=false
 if ! [[ "$NON_INTERACTIVE" = true ]]; then
-    read -p "Do you want to install PHP 7.1? [y/n]" -n 1 -r
+    read -p "Do you want to install PHP 7.x? [y/n]" -n 1 -r
     echo
 fi
 if [[ $REPLY =~ ^[Yy]$ || "$NON_INTERACTIVE" = true ]]; then
     PHP_INSTALLED=true
-    curl -s http://php-osx.liip.ch/install.sh | bash -s 7.1
-    export PATH=/usr/local/php5/bin:$PATH
+    brew install php@7.1
+    brew install php@7.2
+    brew install php@7.3
 fi
 
 COMPOSER_INSTALLED=false
@@ -64,19 +65,19 @@ if [[ $REPLY =~ ^[Yy]$ || "$NON_INTERACTIVE" = true ]]; then
     ### Disable xdebug for composer
     sudo sed -e 's/^zend_extension/;zend_extension/g' /usr/local/php5/php.d/50-extension-xdebug.ini > 50-extension-xdebug.ini && sudo mv 50-extension-xdebug.ini /usr/local/php5/php.d/50-extension-xdebug.ini && sudo chown root:wheel /usr/local/php5/php.d/50-extension-xdebug.ini
     alias php="php -dzend_extension=xdebug.so $*"
-    
+
     ### Install composer...
     php -r "readfile('https://getcomposer.org/installer');" > composer-setup.php
     php -r "if (hash('SHA384', file_get_contents('composer-setup.php')) === trim(file_get_contents('https://composer.github.io/installer.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
     php composer-setup.php
     php -r "unlink('composer-setup.php');"
     mv composer.phar /usr/local/bin/composer
-    
+
     composer -V
-    
+
     composer global require phpunit/phpunit ^5.1
     composer global require phpspec/phpspec ~2.0
-    
+
     composer global require laravel/installer
 fi
 
@@ -138,7 +139,7 @@ if [[ $REPLY =~ ^[Yy]$ || "$NON_INTERACTIVE" = true ]]; then
     cd cowsay
     sh install.sh
     cd ..
-    
+
     brew install fortune
 fi
 
@@ -187,7 +188,7 @@ fi
 # Generate .bash_profile
 cat "$DIR/bash_profile/bash_completion.sh" >> ~/.bash_profile
 if [[ "$PHP_INSTALLED" = true ]]; then
-    cat "$DIR/bash_profile/php.sh" >> ~/.bash_profile
+    # No PHP-specific stuff anymore.
 fi
 if [[ "$COMPOSER_INSTALLED" = true ]]; then
     cat "$DIR/bash_profile/composer.sh" >> ~/.bash_profile
@@ -218,10 +219,10 @@ mkdir ~/Downloads/_attachments
 if [[ "$BASHMARKS_INSTALLED" = true ]]; then
     cd ~/Documents
     s documents
-    
+
     cd ~/Development
     s development
-    
+
     cd ~/Downloads
     s downloads
 fi
